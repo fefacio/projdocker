@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/homepage.css" rel="stylesheet" type="text/css"/>
+    <title>Quanto Cobrar de Aluguel</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Página Inicial</a></li>
+                <li><a href="/sobre">Sobre</a></li>
+                <li><a href="/contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="calculator">
+            <h1>Calculadora de Aluguel de Apartamento</h1>
+            <form action="/estimar-aluguel" method="post">
+                <label for="area">Área (m²)</label>
+                <input type="number" id="area" name="area" required>
+                <label for="bedroom">Número de Quartos</label>
+                <input type="number" id="bedroom" name="bedroom" required>
+                <label for="restroom">Número de Banheiros</label>
+                <input type="number" id="restroom" name="restroom" required>
+                <label for="carParking">Número de Vagas de Garagem</label>
+                <input type="number" id="carParking" name="carParking" required>
+                <label for="condoPrice">Preço do Condomínio</label>
+                <input type="number" id="condoPrice" name="condoPrice" required>
+                <button type="submit" id="calcular">Calcular</button>
+            </form>
+            
+            <div class="result">
+                <% if (result) { %>
+                    <p>O valor sugerido de aluguel é:</p>
+                    <p><%= result %></p>
+                <% } else { %>
+                    <p> Nenhum imóvel correspondente aos critérios foi encontrado.</p>
+                <% } %>
+            </div>
+            <br> 
+            <div class="form_result">
+                <% if (formData) { %>
+                    <p>Valores pesquisados:</p>
+                    <ul class="formData_list">
+                        <li class="formData_item"><strong>Area:</strong> <%= formData['area'] %></li>
+                        <li class="formData_item"><strong>Número de Quartos</strong> <%= formData['bedroom'] %></li>
+                        <li class="formData_item"><strong>Número de Banheiros</strong> <%= formData['restroom'] %></li>
+                        <li class="formData_item"><strong>Número de Vagas de Garagem</strong> <%= formData['carParking'] %></li>
+                        <li class="formData_item"><strong>Preço do Condomínio</strong> <%= formData['condoPrice'] %></li>
+                    </ul>
+                <% } %>
+            </div>
+            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023</p>
+    </footer>
+</body>
+</html>

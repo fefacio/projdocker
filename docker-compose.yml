@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+    nodeserver:
+        restart: on-failure
+        container_name: projnode1-nodeserver
+        build:
+            context: ./app
+        image: aluguelwebapp.azurecr.io/nodeserver
+        depends_on:
+            - db
+        # ports:
+        #     - "3000:3000"
+        expose:
+            - '3000'
+    nginx:
+        restart: always
+        container_name: projnode1-nginx
+        build:
+            context: ./nginx
+        image: aluguelwebapp.azurecr.io/nginx
+        ports:
+            - "80:80"
+        depends_on:
+            - nodeserver
+            - db
+    db:
+        restart: always
+        container_name: projnode1-db
+        build:
+            context: ./database
+        image: aluguelwebapp.azurecr.io/db
+        # ports:
+        #     - "3306:3036"
+        expose:
+            - '3306'        
+        environment:
+            MYSQL_ROOT_PASSWORD: fernando123
+            MYSQL_DATABASE: apartment      
+        volumes:
+            - db-data3:/var/lib/mysql
+
+
+volumes:
+    db-data3:
+        # driver: azure_file
+        # driver_opts:
+        #     share_name: aluguelwebappfs
+        #     storage_account_name: aluguelwebappstrgacc

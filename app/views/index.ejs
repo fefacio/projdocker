@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina inicial</title>
+</head>
+<body>
+    <h1>Bem vindo</h1>
+    <p> Nome: Fernando</p>
+    <h1>Informe a Idade Mínima e Máxima</h1>
+    <form action="/" method="post">
+        <label for="idadeMin">Minimum Age:</label>
+        <input type="text" id="idadeMin" name="idadeMin"><br><br>
+    
+        <label for="idadeMax">Maximum Age:</label>
+        <input type="text" id="idadeMax" name="idadeMax"><br><br>
+    
+        <input type="submit" value="Submit">
+    </form>
+    
+
+
+    <div id="output">
+        <% if (minAge && maxAge) { %>
+            <h2>User's Answers:</h2>
+            <p><strong>Name:</strong> <%= minAge %></p>
+            <p><strong>Email:</strong> <%= maxAge %></p>
+        <% } %>
+    </div>
+</body>
+</html>
